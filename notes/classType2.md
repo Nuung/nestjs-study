@@ -15,7 +15,7 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1945
     - <div align = "center"><img src="./images/img3" width="70%" /></div>
     - 위와 같이 자동으로 파일도 생겼고, app.module에 자동으로 MoviesController를 import하고 controller로 사용을 한다!!  / spec 파일은 테스트 파일이며 지금은 지워도 된다. 나중에 다시 할꺼다!
     - ```@Controller('movies')``` 이게 entry point가 되어 자동으로 url이 접두사 마냥 이게 붙게 되어 있다. 즉 어떤 api를 만들든 movies/{...} 형태가 되는 것, 아래와 같은 코드를 movies.controller.ts를 바꿔주자! 
-        ```javascript
+        ```typescript
         import { Controller, Get } from '@nestjs/common';
         @Controller('movies')
         export class MoviesController {
@@ -31,7 +31,7 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1945
         }
         ```
     - 무언가가 필요하면 우리가 요청을 해야한다! 즉 /:id로만 하면 안되고 아래와 같이야 한다는 것! 파라미터가 무엇인지, 무엇이 필요한지 선언을 해야함! 그 외 코드는 사진에서 확인하자!
-        ```javascript
+        ```typescript
         @Get("/:id")
         getOne(@Param("id") id: string) { // id: string에서 는 아무 이름으로 바뀌어도 된다 ~ 물론 바뀌면 아래 return 변수에서도 바뀌어야 함 
             return `This will return one movie with the id: ${id}`;
@@ -44,10 +44,23 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1945
 ## Routes 요청에 대해서 좀 더 자세히! 
 - Post Method에서 요청의 Body값을 어떻게 다룰까? 
     - 데코레이터 하단의 함수 이름에서 @Body()를 사용하면 된다. 
-    ```javascript
+    ```typescript
     @Post()
     create(@Body() movieData) {
         console.log(movieData);
         return movieData;
     }
     ```
+    - API 설계와 선언이 조오온나 간단해졌다!!  
+- 특정 director request - Get에서 쿼리는 어떻게 받을까?
+    - 위치에서 주의사항이 하나 있다. 아래와 같이 포지셔닝 해야한다. search를 id와 같이 판단하기 때문이다. 그리고 /(슬래쉬)는 없어도 된다.
+    - <div align = "center"><img src="./images/img4" width="70%" /></div>
+    - query는 아래와 같이 쓰면 된다.
+        ```typescript
+        // http://localhost:3000/movies/search?year=1000
+        
+        @Get("search")
+        search(@Query('year') searchingYear: string) {
+            return `We are searching for a movie made after: ${searchingYear}`
+        }
+        ```
