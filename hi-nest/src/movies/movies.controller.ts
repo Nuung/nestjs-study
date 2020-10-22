@@ -14,8 +14,9 @@ export class MoviesController {
     }
 
     @Post()
-    create() {
-        return "This will create a movie";
+    create(@Body() movieData) {
+        console.log(movieData);
+        return movieData;
     }
 
     @Delete("/:id")
@@ -25,6 +26,9 @@ export class MoviesController {
 
     @Patch("/:id")
     path(@Param("id") movieId: string) {
-        return `This will patch a movie with the id: ${movieId}`
+        return {
+            updateMovie: movieId,
+            ...updateData,
+        };
     }
 }
