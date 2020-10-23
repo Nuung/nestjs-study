@@ -24,20 +24,16 @@ export class MoviesController {
 
     @Post()
     create(@Body() movieData) {
-        console.log(movieData);
-        return movieData;
+        return this.movieService.create(movieData);
     }
 
     @Delete("/:id")
     remove(@Param("id") movieId: string) {
-        return `This will delete a movie with the id: ${movieId}`
+        return this.movieService.deleteOne(movieId);
     }
 
     @Patch("/:id")
     path(@Param("id") movieId: string, @Body() updateData) {
-        return {
-            updateMovie: movieId,
-            ...updateData,
-        };
+        return this.movieService.update(movieId, updateData);
     }
 }

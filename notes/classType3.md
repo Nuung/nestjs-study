@@ -36,7 +36,24 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1947
         return this.movieService.getAll();
     }
     ```
+- 코드 다 짜고 아래와 같이 테스트 해보자! insomnia 또는 postman이용!
+- <div align = "center"><img src="./images/img6" width="70%" /></div>
 
 
 ## Movies Service part Two
-- 
+- 우리가 만든 Data들은 메모리 위에 있는 (주메모리 - 플레시 메모리) DB이기 때문에 당연히 서버를 껏다 키면 모두 날라간다!! 하지만 서버를 켜 놓은 동안은 당연히 살아있다! 
+- 먼저 Get :id method를 조금 개편해보자!
+    - 즉 존재하지 않는 id 값 request or other 경우에 적어도 어떤 에러 화면은 보여줄 필요가 있다. **nestjs** 에서 미리 만들어 놓은 (제공하는) throw error를 이용할 수 있다! 
+    ```typescript
+    getOne(id: string): Movie {
+        const movie = this.movies.find(movie => movie.id === +id); // +가 Stirng to Number casting을 해준다.
+        if (!movie) {
+            throw new NotFoundException(`Movie with ID ${} not found.`);
+        }
+        return movie;
+    }
+    ```
+    - 이렇게 error catch ~ throw를 넣으면 delete에서도 ```this.getOne()``` 함수를 이용해서 다른 에러 처리 필요없이 처리할 수 있다. 
+    - update도 이와 비슷하게 바꿔보자, 근데 수업 중에 진행하는 update함수는 좀 많이 구리다 ㅋㅋ 어쩔 수 없다,, db를 안쓰기 때문에 ㅎㅎ (실제 update를 사용하지도 않음)
+- > ***유효성 검사는?!***
+    - updateData 같은 경우는?! patch의 body값을 예로 들어보자! 
