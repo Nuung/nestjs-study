@@ -55,5 +55,54 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1947
     ```
     - 이렇게 error catch ~ throw를 넣으면 delete에서도 ```this.getOne()``` 함수를 이용해서 다른 에러 처리 필요없이 처리할 수 있다. 
     - update도 이와 비슷하게 바꿔보자, 근데 수업 중에 진행하는 update함수는 좀 많이 구리다 ㅋㅋ 어쩔 수 없다,, db를 안쓰기 때문에 ㅎㅎ (실제 update를 사용하지도 않음)
-- > ***유효성 검사는?!***
-    - updateData 같은 경우는?! patch의 body값을 예로 들어보자! 
+
+- Data Transfer Object를 만들자 (DTO)
+    - DTO folder -> create-movie.dto.ts
+    ```typescript
+    export class CreateMovieDto {
+        readonly title: string;
+        readonly year: number;
+        readonly genres: string[];
+    }
+    ```
+    - 이제 수신 전송할때 이 object를 이용하면 된다
+    - movieData의 타입은 **CreateMovieDto**가 되는 것이다.  
+
+- DTO는 왜쓰지?
+    1. 코드의 간결성!
+    2. nestJS가 들어오는 쿼리에 대해 유효성 검사가 가능하다! -> 이걸 위해서 main.ts에 '파이프(코드가 지나가는 자리)'를 만들어 주자!
+    > ***유효성 검사는?!***
+    - 바로 위에서 설명한 Pipe를 통해 할 것이다! 아래 코드를 main에 추가해주자! 그리고 모듈을 추가로 설치해 주자! 바로 class의 유효성 검사를 위해! 
+    ```typescript
+    app.useGlobalPipes(new ValidationPipe());
+    ```
+    ```bash
+    npm i class-validator class-transformer
+    ```
+
+- 이제 DTO를 다시 살펴보자!
+    - 데코레이터를 추가로 사용할 것이다. 아래와 같이 사용하자! 
+    ```typescript
+    import { IsNumber, IsString } from 'class-validator';
+    export class CreateMovieDto {
+        @IsString()
+        readonly title: string;
+        
+        @IsNumber()
+        readonly year: number;
+
+        @IsString({ each: true })
+        readonly genres: string[];
+    }
+    ```
+    - fuxking simple해진다!!! 존나게 개꿀이다 솔직히!! 유효성 검사가 DTO에서 추가 모듈로 초 심플해져 부렸다~ 하지만 pipe line 없으면 안된다는 점! (그냥 파이프라인이 아님 ValidationPipe)
+    - 근데 이 전달하는, 즉, request자체가 도달하기 전에 막아버릴 수 있다!! main에서 아래와 같이 '화이트 리스트' 옵션들 이용하자!
+    ```typescript
+    app.useGlobalPipes(new ValidationPipe({
+        whitelist: true,
+        forbidNonWhitelisted: true,
+        transform: true
+    }));
+    ```
+    - **transform** 을 추가하면 형 변환을 자동으로 지원해 줄 수 있다! 물론 기본적인 규칙은 지켜야 한다!! Controller, Service에서 tpyeOf 체크 해보고 id string to number로 다 바꿔주자! 
+    
