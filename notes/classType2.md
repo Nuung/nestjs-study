@@ -8,10 +8,10 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1945
 - url ~ function만 가져오는 것 부터 만들자 -> 바로 controller 부터! 
     - **nestJS cli** 쓸만한 좋은 명령어들이 굉장히 많다. 
     - <div align = "center"><img src="https://github.com/Nuung/nestjs-study/blob/master/notes/images/img2.png" width="70%" /></div>
-        ```bash
-        nest g co 
-        movies
-        ``` 
+            ```bash
+            nest g co 
+            movies
+            ``` 
     - <div align = "center"><img src="https://github.com/Nuung/nestjs-study/blob/master/notes/images/img3.png" width="70%" /></div>
     - 위와 같이 자동으로 파일도 생겼고, app.module에 자동으로 MoviesController를 import하고 controller로 사용을 한다!!  / spec 파일은 테스트 파일이며 지금은 지워도 된다. 나중에 다시 할꺼다!
     - ```@Controller('movies')``` 이게 entry point가 되어 자동으로 url이 접두사 마냥 이게 붙게 되어 있다. 즉 어떤 api를 만들든 movies/{...} 형태가 되는 것, 아래와 같은 코드를 movies.controller.ts를 바꿔주자! 
