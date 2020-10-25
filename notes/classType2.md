@@ -7,12 +7,12 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1945
 - 영화 restAPI를 만들어 보자 
 - url ~ function만 가져오는 것 부터 만들자 -> 바로 controller 부터! 
     - **nestJS cli** 쓸만한 좋은 명령어들이 굉장히 많다. 
-    - <div align = "center"><img src="./images/img2" width="70%" /></div>
+    - <div align = "center"><img src="https://github.com/Nuung/nestjs-study/blob/master/notes/images/img2.png" width="70%" /></div>
         ```bash
         nest g co 
         movies
         ``` 
-    - <div align = "center"><img src="./images/img3" width="70%" /></div>
+    - <div align = "center"><img src="https://github.com/Nuung/nestjs-study/blob/master/notes/images/img3.png" width="70%" /></div>
     - 위와 같이 자동으로 파일도 생겼고, app.module에 자동으로 MoviesController를 import하고 controller로 사용을 한다!!  / spec 파일은 테스트 파일이며 지금은 지워도 된다. 나중에 다시 할꺼다!
     - ```@Controller('movies')``` 이게 entry point가 되어 자동으로 url이 접두사 마냥 이게 붙게 되어 있다. 즉 어떤 api를 만들든 movies/{...} 형태가 되는 것, 아래와 같은 코드를 movies.controller.ts를 바꿔주자! 
         ```typescript
@@ -54,7 +54,7 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1945
     - API 설계와 선언이 조오온나 간단해졌다!!  
 - 특정 director request - Get에서 쿼리는 어떻게 받을까?
     - 위치에서 주의사항이 하나 있다. 아래와 같이 포지셔닝 해야한다. search를 id와 같이 판단하기 때문이다. 그리고 /(슬래쉬)는 없어도 된다.
-    - <div align = "center"><img src="./images/img4" width="70%" /></div>
+    - <div align = "center"><img src="https://github.com/Nuung/nestjs-study/blob/master/notes/images/img4.png" width="70%" /></div>
     - query는 아래와 같이 쓰면 된다.
         ```typescript
         // http://localhost:3000/movies/search?year=1000

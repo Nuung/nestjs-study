@@ -32,7 +32,7 @@ npm run start:dev
     - Go to http://localhost:3000/hello and check the result!!
     - 한가지 주의할 점은 @~ (데코레이터)와 함수가 떨어져 있으면 안되고 붙어 있어야 한다!
     - Error Page가 참 보기 좋은 것 같다 (JSONView 설치 권고)
-    - <div align = "center"><img src="./images/img1" width="70%" /></div>
+    - <div align = "center"><img src="https://github.com/Nuung/nestjs-study/blob/master/notes/images/img1.png" width="70%" /></div>
 
 ## Service
 - ```this.appService.getHello();``` 여기서 appService의 존재는 무엇이란 말인가!

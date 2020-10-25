@@ -25,7 +25,7 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1951
     - MoviesService, MoviesController를 app.module에서 삭제
     - 그것들을 그대로 MoviesModule로 이전!
     - app.module에서는 그냥 **imports: [MoviesModule],** 만 해주기!
-    - <div align = "center"><img src="./images/img7" width="70%" /></div>
+    - <div align = "center"><img src="https://github.com/Nuung/nestjs-study/blob/master/notes/images/img7.png" width="70%" /></div>
 
 - 이제 다시 nest cli로 controller, service만들기 명령어로 이름은 app으로 만들어 주자!
     ```bash

@@ -13,7 +13,7 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1947
     nest g s
     movies
     ``` 
-    - <div align = "center"><img src="./images/img5" width="70%" /></div>
+    - <div align = "center"><img src="https://github.com/Nuung/nestjs-study/blob/master/notes/images/img5.png" width="70%" /></div>
 - 이제 데이터 베이스를 만들자. 근데 '실제' 데이터베이스가 아닌, DB처럼 사용가능한 fake DB를 이용할 것이다. 
     - 이제 코드 참조 -> []()
     - entities 라는 폴더를 만들고, entity.ts 로 object들을 관리해준다! ORM 느낌으로! 
@@ -37,7 +37,7 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1947
     }
     ```
 - 코드 다 짜고 아래와 같이 테스트 해보자! insomnia 또는 postman이용!
-- <div align = "center"><img src="./images/img6" width="70%" /></div>
+- <div align = "center"><img src="https://github.com/Nuung/nestjs-study/blob/master/notes/images/img6.png" width="70%" /></div>
 
 
 ## Movies Service part Two
