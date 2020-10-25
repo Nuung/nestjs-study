@@ -104,5 +104,8 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1947
         transform: true
     }));
     ```
-    - **transform** 을 추가하면 형 변환을 자동으로 지원해 줄 수 있다! 물론 기본적인 규칙은 지켜야 한다!! Controller, Service에서 tpyeOf 체크 해보고 id string to number로 다 바꿔주자! 
-    
+    - **transform** 을 추가하면 형 변환을 자동으로 지원해 줄 수 있다! 물론 기본적인 규칙은 지켜야 한다!! Controller, Service에서 tpyeOf 체크 해보고 id string to number로 다 바꿔주자! 이게 transfrom의 힘이닷! **프레임 워크의 유용성!**
+
+
+## Update Data DTO의 설정과 유효성 
+- 
