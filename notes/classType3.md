@@ -108,4 +108,14 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1947
 
 
 ## Update Data DTO의 설정과 유효성 
-- 
+- update-movie.dto.ts 만들기 
+    - ```readonly title?: string;``` 이런식으로 **?** 를 붙여서 필수가 아님을 명시해주자! 왜나면 하나만 update 해줄 수 있으니까
+- Controller와 Service에서 @Patch도 Data type을 UpdateMovieDto로 바꿔주자
+- 여기서 다른 방식으로 UpdateMovieDto를 만들 수 있다! 
+    - ```sudo npm i @nestjs/mapped-types``` 일단 설치부터 하자 
+    - [자세한 사항](https://www.npmjs.com/package/@nestjs/mapped-types)
+    ```
+    A good example of such a variant is a Data Transfer Object (DTO). A Data Transfer Object is an object that is used to encapsulate data, and send it from one part of your application to another. DTO’s help us define the input and output interfaces of our system.
+    ```
+
+- **PartialType** 요놈을 통해서 우린 CreateMovieDto를 그대로 따르면서 쉽게 변형할 수 있다! 코드 참조! 
