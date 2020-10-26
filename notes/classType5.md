@@ -21,7 +21,7 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1953
     - 이렇게 하면 모든 spec.ts파일 찾아서 몇 줄이 테스팅 되었는지 나온다.
     - 테스팅 하고 싶은 파일에 spec.ts 이름을 붙여도 된다.
 
-- ```npm run test:watch``는 모든 테스트 파일 찾고 거기서 무슨 일이 일어나는지 체크하는 것
+- ```npm run test:watch```는 모든 테스트 파일 찾고 거기서 무슨 일이 일어나는지 체크하는 것
     - Press f to run only failed tests.
     - Press o to only run tests related to changed files.
     - Press p to filter by a filename regex pattern.
@@ -33,10 +33,10 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1953
 
 - e2e 테스팅은 이 페이지로 가면 특정 페이지가 나와야 하는 경우
     - 사용자 스토리! 사용자 관점에서 보는 것이다. 
-    - **사용자가 특정 링크를 클릭하면 이 링크를 볼 수 있어야 한다!**를 테스트 할때! 
+    - **사용자가 특정 링크를 클릭하면 이 링크를 볼 수 있어야 한다** 를 테스트 할때! 
 
 ## More About Unit Test
-- jest를 들어가보자! [jest](https://jestjs.io/)
+- jest를 들어가보자! [click here to jest](https://jestjs.io/)
 
 - movies.service.spec.ts 파일로 가자! 아래 코드를 추가 해 보자!!
     ```typescript
@@ -63,10 +63,9 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1953
     // 콘솔창에 결과 어떻게 찍히는지가 핵심이다! 
     ```
     - 위와 같이 다른 함수도 바로 진행할 수 있다!! 코드를 참조하자! 
-    > 핵심은 describe("text" () => { it("text", () => { *expect(obj).method* })}) 같은 간단한 형식으로도 테스팅이 바로바로, 그리고 실시간 모니터링으로도 가능하다는 점이다.
+    > 핵심은 describe("text" () => { it("text", () => { **expect(obj).method** })}) 같은 간단한 형식으로도 테스팅이 바로바로, 그리고 실시간 모니터링으로도 가능하다는 점이다.
     
     - 404 error catch (throw 하는지 안하는지) / error message 값이 같은지 등 당연히 이런 테스트도 가능하다!
 
     - ```npm run test:cov```를 돌려보면 우리 커버리지가 증가한 것을 볼 수 있다! 더 많은 부분을 테스트하고 있기 때문이다! => **이 수치들이 우리가 얼마나 테스트를 하고 있는지 나타내어 주는 것!!**
 
-    
