@@ -63,9 +63,43 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1953
     // 콘솔창에 결과 어떻게 찍히는지가 핵심이다! 
     ```
     - 위와 같이 다른 함수도 바로 진행할 수 있다!! 코드를 참조하자! 
-    > 핵심은 describe("text" () => { it("text", () => { **expect(obj).method** })}) 같은 간단한 형식으로도 테스팅이 바로바로, 그리고 실시간 모니터링으로도 가능하다는 점이다.
+    > 핵심은 describe("text" () => { it("text", () => { **expect(obj).method** }); }); 같은 간단한 형식으로도 테스팅이 바로바로, 그리고 실시간 모니터링으로도 가능하다는 점이다.
     
     - 404 error catch (throw 하는지 안하는지) / error message 값이 같은지 등 당연히 이런 테스트도 가능하다!
 
     - ```npm run test:cov```를 돌려보면 우리 커버리지가 증가한 것을 볼 수 있다! 더 많은 부분을 테스트하고 있기 때문이다! => **이 수치들이 우리가 얼마나 테스트를 하고 있는지 나타내어 주는 것!!**
 
+- Delete와 Create도 위와 같이 유닛테스트를 추가해주자
+    - 코드를 참조하자! 핵심적인 부분은 아래와 같다! 
+    ```typescript
+    const allMovies = service.getAll().length; // 만들어졌는지 체크 
+    service.deleteOne(1);
+    const afterDelete = service.getAll().length;
+    expect(afterDelete).toBeLessThan(allMovies);
+    ```
+    - 임의로 만들어 주는 코드가 있고, 그 후의 길이와 삭제한 뒤의 길이 차이가 after가 더 작은게 참이냐는 것이다! => 테스트 잘 된당!
+    - 추가로 try - catch로 404 error catch까지 해주면 완벽해 진다.
+    - Create도 위와 동일하다 
+
+- Update (Patch method)도 마저 유닛 테스트를 만들어 주자 
+    - 역시 코드 참조, 핵심은 아래! **.not.** 으로 부정이 가능하다! 
+    ```typescript
+    // 하나 create 한 뒤 origin과 타이틀이 달라졌는지, 그리고 달리진 내용이 바꾸려는 내용과 일치하는지 expect test
+    const originTitle = service.getOne(1).title;
+    service.update(1, {title: "Updated Test"});
+    const movie = service.getOne(1);
+    expect(movie.title).toEqual("Updated Test");
+    expect(movie.title).not.toEqual(originTitle); // not 으로 부정이 가능! 
+    ```
+    - 추가로 try - catch로 404 error catch까지 해주면 완벽해 진다. -> 'NotFoundException'
+
+- beforeEach가 있듯이 afterAll 이라는 hook method로 임시로 만들어 둔 데이터들을 (또는 DB에 추가한 것들) 한번에 정리하는 기능도 만들 수 있다.
+    ```typescript
+    // 작업 후에 action
+    afterAll(async () => {
+        console.log(service.getAll());
+    });
+    ```
+
+- 모든 유닛들이 테스트 되었고 커버에이지 되었을까? 아래 사진 참조! **booooom!**
+    - <div align = "center"><img src="https://github.com/Nuung/nestjs-study/blob/master/notes/images/img11.png" width="70%" /></div>

@@ -19,6 +19,30 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/')
       .expect(200)
-      .expect('Hello World!');
+      .expect('Hello! this is just app.controller');
   });
+
+  describe('/movies (GET)', () => {
+    it('GET', () => {
+      return request(app.getHttpServer())
+      .get('/movies')
+      .expect(200)
+      .expect([]); // temp arr를 (가짜 디비)사용하기 때문에 아무것도 없어야 한다 
+    });
+
+    it('POST', () => {
+      return request(app.getHttpServer())
+      .post('/movies')
+      .send({
+        title:"Test",
+        year: 2000,
+        genres: ['test']
+      })
+      .expect(201); // create api가 잘 작동 되는지? 
+    });
+
+    it('DELETE', () => {
+      return request(app.getHttpServer()).delete('/movies').expect(404);
+    });
+  }); // describe /movies
 });
