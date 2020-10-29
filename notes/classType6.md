@@ -1,5 +1,5 @@
 # 4.0 Testing movies (08:31)
-https://nomadcoders.co/nestjs-fundamentals/lectures/1958
+[https://nomadcoders.co/nestjs-fundamentals/lectures/1958]
 
 ###
 
@@ -56,4 +56,26 @@ https://nomadcoders.co/nestjs-fundamentals/lectures/1958
     }); // describe /movies
     ```
 
-- 
+## Missing Point
+- nestJS는 테스트마다 어플리케이션을 생성하고 있다. -> 이건 실제 테스트할때 생성하는 것과는 전혀 다른 것이다! 
+    - 매번 테스트할때마다 생기는 것을 원하지 않는다. 그래서 간단하게! **테스팅을 시작하기 전에 새 어플리케이션을 만들어 보자!** => ```beforeEach -> beforeAll``` 로 바꿔주자
+
+    - 그런데 movie id 1 get을 하는 것이 테스팅 되지 않는다! [이건 봐야해](https://nomadcoders.co/nestjs-fundamentals/lectures/1959) 왜?
+
+    - 리얼 서버와 테스트 서버에서 getOne 함수가 작동할때 consloe log로 typeof id 찍어보자! 
+        > 리얼에서는 number, testing에서는 string으로 찍인다!! wow 왜??
+
+    - **main.ts**에서 'transform'을 기억하자! controller에서 타입을 우리가 목적한 것으로 바꿔준다!! 즉, 이 transform이 testing server에서는 작동하지 않는다! -> 어떤 파이프에도 올리지 않았다는 것이다.
+        > Tesing Server도 이런 서버 환경을 똑같이 세팅해줘야 한다는 것이다!!
+    ```typescript
+    // 아래 코드를 추가 꼭 해주자!! 
+    app.useGlobalPipes(new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true
+    }));
+    ```
+- 테스팅 환경도 리얼과 똑같이 해줘야한다는 점 잊지말자!! 그리고 movie id, get 200, get404, delete, patch도 마저 다 완성시켜주자~ 
+    - get & post request 200, 201, 400, 404 error code complite
+
+## END UP 
